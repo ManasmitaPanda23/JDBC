@@ -1,40 +1,48 @@
-package com.jdbc;
-
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Types;
+package model;
 
 public class Posts {
-	public static void main(String[] args) throws Exception {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		System.out.println("Driver is loaded");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "");
-		System.out.println("Connection is created");
-		// CallableStatement cst=con.prepareCall("call titleupdate(?,?)");
-		// cst.setInt(1,1);
-		// cst.setString(2, "new post title");
-		// cst.registerOutParameter(2, Types.VARCHAR);
-		// int res=cst.executeUpdate();
-		// String title=cst.getString(2);
-		// System.out.println(title);
+	private int id;
+	private String title;
+	private String body;
 
-		//CallableStatement cst = con.prepareCall("call insertTitle(?,?)");
-		//cst.setString(1, "third post title");
-		//cst.setString(2, "Weather");
-		//cst.registerOutParameter(1, Types.VARCHAR);
-		//cst.registerOutParameter(2, Types.VARCHAR);
-		//int res1 = cst.executeUpdate();
-		//String title = cst.getString(1);
-		//String body = cst.getString(2);
-		//System.out.println(title);
-		//System.out.println(body);
+	public  Posts() {
 
-		CallableStatement cst = con.prepareCall("call deletePosts(?)");
-		cst.setInt(1,2);
-		int res = cst.executeUpdate();
-		System.out.println("post is deleted");
+	}
 
+	public Posts(int id, String title, String body) {
+		this.id = id;
+		this.title = title;
+		this.body = body;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	@Override
+	public String toString() {
+
+		return "Post [id=" + id + ", title=" + title + ", body=" + body + "]";
 	}
 
 }
